@@ -1,2 +1,4 @@
 # obs-plot
-This repo plots obs from DART.
+This repository plots obs from DART.
+
+Dependencies: xarray, cartopy, matplotlib, netcdf4
