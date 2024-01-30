@@ -44,20 +44,20 @@ def check_filetype(filetype):
     if filetype not in valid_filetype:
         raise ValueError(f"Invalid file type '{valid_filetype}'. Expected one of {valid_filetype}.")
         
-def checksize(directory)
+def checksize(directory):
     files = os.listdir(directory)
 
     if len(files) > 10000:
         warnings.warn(f"The directory contains {len(files)} files, which exceeds the recommended limit of 10,000, so this processing may be slow.")
 
 
-def handle_AIRS(directory):
+def handle_AIRS(directory, filetype):
     checksize(directory)
     # Figure out hdf issue
     obs = xr.open_mfdataset(directory + '*' + filetype)
     return obs
     
-def handle_GPS(directory): 
+def handle_GPS(directory, filetype): 
     checksize(directory)
     
     obs = xr.open_mfdataset(directory + '*' + filetype, combine='nested', concat_dim='OL_vec', chunks={'OL_vec': 9649})
@@ -65,19 +65,19 @@ def handle_GPS(directory):
     return obs
     
     
-def handle_CI(directory):
+def handle_CI(directory, filetype):
     checksize(directory)
     # combines along MS_alt
     obs = xr.open_mfdataset(directory + '*' + filetype)
     return obs
     
-def handle_WOD(directory):
+def handle_WOD(directory, filetype):
     checksize(directory)
     # combines along time
     obs = xr.open_mfdataset(directory + '*' + filetype)
     return obs
     
-def handle_Ion(directory):
+def handle_Ion(directory, filetype):
     checksize(directory)
     
     obs = xr.open_mfdataset(directory + '*' + filetype, combine='nested', concat_dim='MSL_alt')

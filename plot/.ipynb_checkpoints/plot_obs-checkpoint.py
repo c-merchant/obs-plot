@@ -24,9 +24,9 @@ def get_plotvars(obs, obstype):
     elif type == 'WOD':
         return vars
     elif type == 'mixed':
-        return pass
+        return None
     else:
-        return pass
+        return None
 
 def plot_obs(obs, obstype, var, savename):
 
@@ -45,14 +45,14 @@ def plot_obs(obs, obstype, var, savename):
     else:
         return plot_gen(obs, var, savename)
 
-def handle_AIRS(obs, var, savename):
+def plot_AIRS(obs, var, savename):
     return False
     
-def handle_GPS(obs, var, savename): 
+def plot_GPS(obs, var, savename): 
     return False
     
     
-def handle_CI(obs, var, savename):
+def plot_CI(obs, var, savename):
     if var == 'OCC_azi':
         unit = ' [deg]'
     elif var == 'TEC_cal':
@@ -66,12 +66,12 @@ def handle_CI(obs, var, savename):
     plt.ylabel(var + unit)
     plt.title(var + ' vs. MSL_alt')
     plt.legend()
-    plt.savefig(savename + '.png', dpi=300, bbox_inches='tight')
+    plt.savefig('./figures/' + savename + '.png', dpi=300, bbox_inches='tight')
     plt.show()
     return True
 
 
-def handle_WOD(obs, var, savename):
+def plot_WOD(obs, var, savename):
     if var == 'sla_filtered' or var == 'adt_filtered':
         unit = ' [m]'
     else:
@@ -90,11 +90,11 @@ def handle_WOD(obs, var, savename):
 
     # Adding titles and labels
     plt.title('Geographical Distribution of '  + var)
-    plt.savefig(savename + '.png', dpi=300, bbox_inches='tight')
+    plt.savefig('./figures/' + savename + '.png', dpi=300, bbox_inches='tight')
     plt.show()
     return True
     
-def handle_Ion(obs, var, savename):
+def plot_Ion(obs, var, savename):
     if var == 'OCC_azi':
         unit = ' [deg]'
     elif var == 'TEC_cal':
@@ -108,7 +108,7 @@ def handle_Ion(obs, var, savename):
     plt.ylabel(var + unit)
     plt.title(var + ' vs. MSL_alt')
     plt.legend()
-    plt.savefig(savename + '.png', dpi=300, bbox_inches='tight')
+    plt.savefig('./figures/' + savename + '.png', dpi=300, bbox_inches='tight')
     plt.show()
     return True
 

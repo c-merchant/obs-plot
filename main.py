@@ -1,5 +1,5 @@
-from read import read_obs
-from plot import get_plotvars, plot_obs
+from read import read_obs as ro
+from plot import plot_obs as po
 import xarray as xr
 import numpy as np
 import pandas as pd
@@ -24,7 +24,7 @@ def main():
 
     # Read observations based on provided arguments
     try:
-        obs_data = read_obs(args.directory, args.obstype, args.filetype)
+        obs_data = ro.read_obs(args.directory, args.obstype, args.filetype)
         print("Successfully read data.")
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -33,7 +33,7 @@ def main():
     
     plotparser = argparse.ArgumentParser(description='Plot observational data.')
 
-    varoptions = get_plotvars(obs_data, type)
+    varoptions = po.get_plotvars(obs_data, type)
     
     print('Available variables: ' + str(varoptions))
 
